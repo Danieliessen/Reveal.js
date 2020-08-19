@@ -1,5 +1,4 @@
-  
-let els = document.getElementsByClassName('reveal');
+    let els = document.getElementsByClassName('reveal');
     refreshClasses();
     document.addEventListener('scroll', function (){
         refreshTargets();
@@ -14,10 +13,13 @@ let els = document.getElementsByClassName('reveal');
     }
     function refreshClasses(){
         Array.prototype.forEach.call(els, function(s){
+            let customElementClassNameOptional = s.getAttribute('data-class-reveal');
+            let className = !customElementClassNameOptional ? 'revealed' : customElementClassNameOptional;
             if (isElInViewport(s)){
-                s.classList.add('revealed');
+                s.classList.add(className);
             }
             else{
-                s.classList.remove('revealed');
+                s.classList.remove(className);
             }
         });
+    }
